@@ -5,11 +5,24 @@ function validateBlank(id, errLoc, errorMsg) {
 
   if (refToTextControl.value == "") {
     refToErrorText.innerText = errorMsg;
+    return false;
   } else {
     refToErrorText.innerText = "";
-    refToMyPara.innerText =
-      refToMyPara.innerText + " " + refToTextControl.value;
+    // refToMyPara.innerText =
+    //   refToMyPara.innerText + " " + refToTextControl.value;
+      return true;
   }
 }
 
-// function validateName(id, errLoc, errorMsg)
+function validateLength(id, errLoc, errorMsg){
+    var val = document.getElementById(id).value;
+    var refToErrorText = document.getElementById(errLoc);
+
+    if(val.length < 3 || val.length > 20){
+        refToErrorText.innerText = errorMsg;
+        return false;
+    }else{
+        refToErrorText.innerText = ""
+    }
+    return true;
+}
