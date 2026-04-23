@@ -8,8 +8,6 @@ function validateBlank(id, errLoc, errorMsg) {
     return false;
   } else {
     refToErrorText.innerText = "";
-    // refToMyPara.innerText =
-    //   refToMyPara.innerText + " " + refToTextControl.value;
       return true;
   }
 }
