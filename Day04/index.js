@@ -13,7 +13,7 @@ function validateBlank(id, errLoc, errorMsg) {
 }
 
 function validateLength(id, errLoc, errorMsg){
-    var val = document.getElementById(id).value;
+    var val = document.getElementById(id);
     var refToErrorText = document.getElementById(errLoc);
 
     if(val.length < 3 || val.length > 20){
@@ -23,4 +23,17 @@ function validateLength(id, errLoc, errorMsg){
         refToErrorText.innerText = ""
     }
     return true;
+}
+
+function vadlidateNumberLenght(id, errLoc, errorMsg){
+    var refToNumber = document.getElementById(id)
+    var refToErrorLoc = document.getElementById(errLoc)
+    
+    if(refToNumber.length != 10){
+        refToErrorLoc.innerText = errorMsg
+        return false;
+    }else{
+        refToErrorLoc.innerText = ""
+        return true;
+    }
 }

@@ -61,22 +61,26 @@
           validateLength(
             "name",
             "errorName",
-            "Name length should be between 3-20",
+            "Name length should be between 3-20"
           );
 
         var isEmptyNumber = validateBlank(
           "number",
           "errorNumber",
-          "Number is required",
-        );
+          "Number is required"
+        ) && vadlidateNumberLenght(
+            "number",
+          "errorNumber",
+          "Number length should be 10"
+        )
         var isEmptyAddress = validateBlank(
           "address",
           "errorAddress",
-          "Address is required",
+          "Address is required"
         );
 
-
         if (validateName && isEmptyNumber && isEmptyAddress) {
+            document.getElementById("myPara").innerText = "Form submitted successfully!";
         }
       }
     </script>
