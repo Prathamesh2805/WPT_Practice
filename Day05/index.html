@@ -1,0 +1,229 @@
+<html>
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <img
+      id="mycar"
+      src="car.png"
+      style="position: absolute; left: 0px; top: 50px"
+    />
+
+    <div
+      id="mydiv12"
+      style="
+        height: 50px;
+        width: 100%;
+        background-color: black;
+        position: absolute;
+        left: 0px;
+        top: 100px;
+      "
+    ></div>
+    <input type="button" id="btn" value="Click Me" onclick="Move()" />
+
+    <h1 style="position: absolute; left: 550px; top: 150px">Travellers</h1>
+    <table style="position: absolute; top: 250px; left: 450px">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Address</th>
+          <th>Age</th>
+        </tr>
+      </thead>
+      <tbody id="newRows"></tbody>
+    </table>
+    <input
+      style="position: absolute; top: 250px"
+      type="button"
+      value="Add"
+      onclick="addTravellers()"
+    />
+    <input
+      style="position: absolute; top: 300px"
+      type="button"
+      value="Delete"
+      onclick="deleteTravellers()"
+    />
+
+    <div
+      id="mydiv1"
+      style="
+        top: 400px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: aqua;
+      "
+      onmouseover="flip1()"
+      onmouseout="flip1()"
+    ></div>
+    <div
+      id="mydiv2"
+      style="
+        top: 400px;
+        left: 408px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: black;
+      "
+      onmouseover="flip2()"
+      onmouseout="flip2()"
+    ></div>
+    <div
+      id="mydiv3"
+      style="
+        top: 400px;
+        left: 808px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: blue;
+      "
+      onmouseover="flip3()"
+      onmouseout="flip3()"
+    ></div>
+    <div
+      id="mydiv4"
+      style="
+        top: 800px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: blueviolet;
+      "
+      onmouseover="flip4()"
+      onmouseout="flip4()"
+    ></div>
+    <div
+      id="mydiv5"
+      style="
+        top: 800px;
+        left: 408px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: brown;
+      "
+      onmouseover="flip5()"
+      onmouseout="flip5()"
+    ></div>
+    <div
+      id="mydiv6"
+      style="
+        top: 800px;
+        left: 808px;
+        position: absolute;
+        height: 400px;
+        width: 400px;
+        background-color: chartreuse;
+      "
+      onmouseover="flip6()"
+      onmouseout="flip6()"
+    ></div>
+
+    <script>
+      var counter = 0;
+
+      function Move() {
+        var refTomycar = document.getElementById("mycar");
+        refTomycar.style.left = counter + "px";
+        counter = counter + 10;
+        setInterval(Move, 50);
+      }
+
+      function addTravellers() {
+        var refToTbody = document.getElementById("newRows");
+        refToTbody.innerHTML =
+          refToTbody.innerHTML +
+          `<tr>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+          <td><input type="text"></td>
+        </tr>`;
+      }
+
+      function deleteTravellers() {
+        var refToTbody = document.getElementById("newRows");
+        refToTbody.lastElementChild.remove();
+      }
+
+      // function flip() {
+      //   changeColor("mydiv1", "yellow", "aqua");
+      //   changeColor("mydiv2", "black", "brown");
+      //   changeColor("mydiv3", "blue", "chartreuse");
+      //   changeColor("mydiv4", "blueviolet", "black");
+      //   changeColor("mydiv5", "brown", "yellow");
+      //   changeColor("mydiv6", "chartreuse", "blue");
+      // }
+
+      var flag1 = true;
+      function flip1() {
+        var refTomyDiv1 = document.getElementById("mydiv1");
+        if (flag1) {
+          refTomyDiv1.style.backgroundColor = "yellow";
+          flag1 = false;
+        } else {
+          refTomyDiv1.style.backgroundColor = "aqua";
+          flag1 = true;
+        }
+      }
+      var flag2 = true;
+      function flip2() {
+        var refTomyDiv2 = document.getElementById("mydiv2");
+        if (flag2) {
+          refTomyDiv2.style.backgroundColor = "black";
+          flag2 = false;
+        } else {
+          refTomyDiv2.style.backgroundColor = "brown";
+          flag2 = true;
+        }
+      }
+      var flag3 = true;
+      function flip3() {
+        var refTomyDiv3 = document.getElementById("mydiv3");
+        if (flag3) {
+          refTomyDiv3.style.backgroundColor = "chartreuse";
+          flag3 = false;
+        } else {
+          refTomyDiv3.style.backgroundColor = "gray";
+          flag3 = true;
+        }
+      }
+      var flag4 = true;
+      function flip4() {
+        var refTomyDiv4 = document.getElementById("mydiv4");
+        if (flag4) {
+          refTomyDiv4.style.backgroundColor = "blueviolet";
+          flag4 = false;
+        } else {
+          refTomyDiv4.style.backgroundColor = "black";
+          flag4 = true;
+        }
+      }
+      var flag5 = true;
+      function flip5() {
+        var refTomyDiv5 = document.getElementById("mydiv5");
+        if (flag5) {
+          refTomyDiv5.style.backgroundColor = "brown";
+          flag5 = false;
+        } else {
+          refTomyDiv5.style.backgroundColor = "yellow";
+          flag5 = true;
+        }
+      }
+      var flag6 = true;
+      function flip6() {
+        var refTomyDiv6 = document.getElementById("mydiv6");
+        if (flag6) {
+          refTomyDiv6.style.backgroundColor = "red";
+          flag6 = false;
+        } else {
+          refTomyDiv6.style.backgroundColor = "chartreuse";
+          flag6 = true;
+        }
+      }
+    </script>
+  </body>
+</html>
