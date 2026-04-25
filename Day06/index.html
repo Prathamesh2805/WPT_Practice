@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <input type="button" value="Start" onclick="startCounting()" />
+    <input type="button" value="Stop" onclick="stopCounting()" />
+    <hr />
+    <h1 id="counter"></h1>
+    <hr />
+    <script>
+      var queueArray = new Array();
+
+      function startCounting() {
+        var queueNo = setInterval(f1, 1000);
+        queueArray.push(queueNo);
+        console.log("Queue created with queue no " + queueNo);
+      }
+
+      function stopCounting() {
+        for (var i = 0; i < queueArray.length; i++) {
+          var queueNo = queueArray[i];
+          clearInterval(queueNo);
+          console.log("Queue stopped with queue no " + queueNo);
+        }
+      }
+
+      var counter = 0;
+      function f1() {
+        var reftoCounter = document.getElementById("counter");
+        counter = counter + 1;
+        reftoCounter.innerText = counter;
+      }
+    </script>
+  </body>
+</html>
