@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <title>Document</title>
+  </head>
+  <body>
+    <input
+      type="buttion"
+      value="Click me to see your lattitude and longitude"
+      onclick="getLocation()"
+    />
+    <h1>Lattitude</h1>
+    <h1 id="latitude"></h1>
+    <h1>Longitude</h1>
+    <h1 id="longitude"></h1>
+
+    <a href="" target="_blank" id="trackLink">Track your location</a>
+
+    <script>
+      function getLocation() {
+        navigator.geolocation.getCurrentPosition(onSuccess, onFailure);
+      }
+
+      function onSuccess(result) {
+        var refToLat = document.getElementById("latitude");
+        var refToLong = document.getElementById("longitude");
+        var refToTrackLink = document.getElementById("trackLink");
+
+        var lat = result.coords.latitude;
+        var long = result.coords.longitude;
+
+        refToLat.innerText = lat;
+        refToLong.innerText = long;
+
+        var url = `https://www.latlong.net/c/?lat= ` + lat + `&long=` + long;
+
+        refToTrackLink.href = url;
+      }
+
+      function onFailure(err) {
+        console.log("Something wrong!");
+        console.log("details are : ");
+        console.log(err);
+      }
+    </script>
+  </body>
+</html>
