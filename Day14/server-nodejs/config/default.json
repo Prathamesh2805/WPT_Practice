@@ -1,0 +1,8 @@
+{
+  "myServer": "localhost",
+  "myPort": 3306,
+  "myUsername": "root",
+  "myPassword": "admin",
+  "myDatabase": "nodejs",
+  "jwtSecretKey": "1234456789"
+}

@@ -22,18 +22,16 @@ function App() {
       if (result.data.affectedRows > 0) {
         setEmp({ no: 0, name: "", address: "" });
         getData();
-      }
-      else
-      {
-        alert('something wrong!')
+      } else {
+        alert("something wrong!");
       }
     });
   };
 
   const onTextChange = (args) => {
-    var copyOfEmp = {...emp}
+    var copyOfEmp = { ...emp };
     copyOfEmp[args.target.name] = args.target.value;
-    setEmp(copyOfEmp)
+    setEmp(copyOfEmp);
   };
 
   return (
