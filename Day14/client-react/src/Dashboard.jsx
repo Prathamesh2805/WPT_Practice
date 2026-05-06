@@ -8,10 +8,65 @@ function Dashboard() {
 
   const navigate = useNavigate();
 
+  const url = "http://localhost:4141/employees";
+
   const logOut = () => {
     sessionStorage.removeItem("token");
     navigate("/signin", { replace: true });
   };
+
+  const edit = (empToBeEdited) => {
+    var copyOfEmp = empToBeEdited;
+    setEmp(copyOfEmp)
+  };
+
+  const addRecord = () => {
+    const token = sessionStorage.getItem("token");
+    axios
+      .post(url, emp, { headers: { Authorization: "bearer " + token } })
+      .then((result) => {
+        if (result.data.affectedRows > 0) {
+          setEmp({ no: 0, name: "", address: "" });
+          getData();
+        } else {
+          alert("Something went wrong!");
+        }
+      });
+  };
+
+  const updateRecord = ()=>{
+    const token = sessionStorage.getItem('token');
+
+    axios
+    .put(url + `/${emp.no}`, emp, {headers: {Authorization: "bearer " + token}})
+    .then((result)=>{
+      if(result.data.affectedRows > 0){
+        setEmp({no:0, name:"", address:""})
+        getData();
+      }
+      else
+      {
+        alert("Something went wrong!")
+      }
+    })
+  }
+
+  const deleteRecord = (empToDelete)=>{
+    const token = sessionStorage.getItem('token');
+
+    axios
+    .delete(url + `/${empToDelete.no}`, {headers: {Authorization: "bearer " + token}})
+    .then((result)=>{
+      if(result.data.affectedRows > 0){
+        setEmp({no:0, name:"", address:""})
+        getData();
+      }
+      else
+      {
+        alert("Something went wrong!")
+      }
+    })
+  }
 
   const onTextChange = (args) => {
     const copyOfEmp = { ...emp };
@@ -19,7 +74,6 @@ function Dashboard() {
     setEmp(copyOfEmp);
   };
 
-  const url = "http://localhost:4141/employees";
   const getData = () => {
     var token = sessionStorage.getItem("token");
     axios
@@ -80,7 +134,12 @@ function Dashboard() {
             </tr>
             <tr>
               <td></td>
-              <td><button className="btn btn-primary">Add record</button> <button className="btn btn-success">Update record</button></td>
+              <td>
+                <button className="btn btn-primary me-3" onClick={addRecord}>
+                  Add record
+                </button>
+                <button className="btn btn-success me-3" onClick={updateRecord}>Update record</button>
+              </td>
             </tr>
           </tbody>
         </table>
@@ -103,8 +162,16 @@ function Dashboard() {
                   <td>{emp.no}</td>
                   <td>{emp.name}</td>
                   <td>{emp.address}</td>
-                  <td><button className="btn btn-warning me-3">Edit</button>
-                  <button className="btn btn-danger me-3">Remove</button></td>
+                  <td>
+                    <button className="btn btn-warning me-3" onClick={()=>{
+                      edit(emp)
+                    }}>
+                      Edit
+                    </button>
+                    <button className="btn btn-danger me-3"onClick={()=>{
+                      deleteRecord(emp)
+                    }}>Remove</button>
+                  </td>
                 </tr>
               );
             })}

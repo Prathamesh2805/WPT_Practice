@@ -1,5 +1,5 @@
-const express  = require ('express');
-const mysql = require ('mysql2');
+const express = require("express");
+const mysql = require("mysql2");
 const config = require("config");
 
 const app = express.Router();
@@ -11,7 +11,6 @@ const dbConnectionDetails = {
   password: config.get("myPassword"),
   database: config.get("myDatabase"),
 };
-
 
 app.get("/", (req, res) => {
   const connection = mysql.createConnection(dbConnectionDetails);
@@ -28,18 +27,54 @@ app.get("/", (req, res) => {
   connection.end();
 });
 
+app.post("/", (req, res) => {
+  const connection = mysql.createConnection(dbConnectionDetails);
+  connection.connect();
+  connection.query(
+    `insert into emp (name, address) values('${req.body.name}', '${req.body.address}')`,
+    (err, result) => {
+      if (err == null) {
+        res.json(result);
+      } else {
+        res.json(err);
+      }
+      connection.end();
+    },
+  );
+  // console.log("Post employee request received");
+});
 
-app.post("/", (req, res)=>{
-res.send("Post employee request recived")
-})
+app.put("/:no", (req, res) => {
+  const connection = mysql.createConnection(dbConnectionDetails);
+  connection.connect();
+  connection.query(
+    `update emp set name = '${req.body.name}', address = '${req.body.address}' where no = ${req.params.no}`,
+    (err, result) => {
+      if (err == null) {
+        res.json(result);
+      } else {
+        res.json(err);
+      }
+      connection.end();
+    },
+  );
+});
 
-app.put("/", (req, res)=>{
-res.send("Put employee request recived")
-})
-
-app.delete("/", (req, res)=>{
-res.send("Delete employee request recived")
-})
+app.delete("/:no", (req, res) => {
+  const connection = mysql.createConnection(dbConnectionDetails);
+  connection.connect();
+  connection.query(
+    `delete from emp where no = ${req.params.no}`,
+    (err, result) => {
+      if (err == null) {
+        res.json(result);
+      } else {
+        res.json(err);
+      }
+      connection.end();
+    },
+  );
+});
 
 
 module.exports = app;
