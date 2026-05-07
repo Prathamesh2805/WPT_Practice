@@ -82,10 +82,6 @@ function Dashboard() {
         console.log(result.data);
         setEmps(result.data);
       })
-      .catch((error) => {
-        console.error("Failed to load employees:", error);
-        setEmps([]);
-      });
   };
 
   useEffect(() => {
